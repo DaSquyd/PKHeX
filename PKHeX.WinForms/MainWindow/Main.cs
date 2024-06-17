@@ -55,7 +55,7 @@ public partial class Main : Form
         if (HaX)
         {
             EntityConverter.AllowIncompatibleConversion = EntityCompatibilitySetting.AllowIncompatibleAll;
-            WinFormsUtil.Alert(MsgProgramIllegalModeActive, MsgProgramIllegalModeBehave);
+            // WinFormsUtil.Alert(MsgProgramIllegalModeActive, MsgProgramIllegalModeBehave);
         }
         else if (showChangelog)
         {
@@ -122,7 +122,7 @@ public partial class Main : Form
         BAKprompt = false;
 
         FormLoadConfig(out BAKprompt, out showChangelog);
-        HaX = Settings.Startup.ForceHaXOnLaunch || GetIsHaX(args);
+        HaX = true; // Settings.Startup.ForceHaXOnLaunch || GetIsHaX(args);
 
         WinFormsUtil.AddSaveFileExtensions(Settings.Backup.OtherSaveFileExtensions);
         SaveFinder.CustomBackupPaths.Clear();

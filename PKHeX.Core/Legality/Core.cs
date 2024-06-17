@@ -40,7 +40,7 @@ public static class Legal
     internal const int MaxMoveID_5 = 559;
     internal const int MaxItemID_5_BW = 632;
     internal const int MaxItemID_5_B2W2 = 638;
-    internal const int MaxAbilityID_5 = 164;
+    internal const int MaxAbilityID_5 = (int)Ability.MAX_COUNT - 1;
     internal const int MaxBallID_5 = 0x19;
     internal const GameVersion MaxGameID_5 = GameVersion.B2;
 
@@ -103,15 +103,19 @@ public static class Legal
     internal const int MaxSpeciesID_8a = (int)Species.Enamorus;
     internal const int MaxMoveID_8a = (int)Move.TakeHeart;
     internal const int MaxItemID_8a = 1828; // Legend Plate
+
     internal const int MaxBallID_8a = (int)Ball.LAOrigin;
-  //internal const GameVersion MaxGameID_8a = GameVersion.SP;
+
+    //internal const GameVersion MaxGameID_8a = GameVersion.SP;
     internal const int MaxAbilityID_8a = MaxAbilityID_8_R2;
 
     internal const int MaxSpeciesID_8b = MaxSpeciesID_4; // Arceus-493
     internal const int MaxMoveID_8b = MaxMoveID_8_R2;
     internal const int MaxItemID_8b = 1822; // DS Sounds
+
     internal const int MaxBallID_8b = (int)Ball.LAOrigin;
-  //internal const GameVersion MaxGameID_8b = GameVersion.SP;
+
+    //internal const GameVersion MaxGameID_8b = GameVersion.SP;
     internal const int MaxAbilityID_8b = MaxAbilityID_8_R2;
 
     internal const int MaxSpeciesID_9 = MaxSpeciesID_9_T2;
@@ -122,17 +126,17 @@ public static class Legal
     internal const int MaxSpeciesID_9_T0 = (int)Species.IronLeaves;
     internal const int MaxMoveID_9_T0 = (int)Move.MagicalTorque;
     internal const int MaxItemID_9_T0 = 2400; // Yellow Dish
-    internal const int MaxAbilityID_9_T0 = (int)Ability.MyceliumMight;
+    internal const int MaxAbilityID_9_T0 = 0;
 
     internal const int MaxSpeciesID_9_T1 = (int)Species.Ogerpon;
     internal const int MaxMoveID_9_T1 = (int)Move.IvyCudgel;
     internal const int MaxItemID_9_T1 = 2481; // Glimmering Charm
-    internal const int MaxAbilityID_9_T1 = (int)Ability.SupersweetSyrup;
+    internal const int MaxAbilityID_9_T1 = 0;
 
     internal const int MaxSpeciesID_9_T2 = (int)Species.Pecharunt;
     internal const int MaxMoveID_9_T2 = (int)Move.MalignantChain;
     internal const int MaxItemID_9_T2 = 2557; // Briar’s Book
-    internal const int MaxAbilityID_9_T2 = (int)Ability.PoisonPuppeteer;
+    internal const int MaxAbilityID_9_T2 = 0;
 
     internal const int MaxBallID_9 = (int)Ball.LAOrigin;
     internal const GameVersion MaxGameID_9 = GameVersion.VL;
@@ -156,15 +160,15 @@ public static class Legal
 
     internal static int GetMaxLanguageID(byte generation) => generation switch
     {
-        1 => (int) LanguageID.Spanish, // 1-7 except 6
-        3 => (int) LanguageID.Spanish, // 1-7 except 6
-        2 => (int) LanguageID.Korean,
-        4 => (int) LanguageID.Korean,
-        5 => (int) LanguageID.Korean,
-        6 => (int) LanguageID.Korean,
-        7 => (int) LanguageID.ChineseT,
-        8 => (int) LanguageID.ChineseT,
-        9 => (int) LanguageID.ChineseT,
+        1 => (int)LanguageID.Spanish, // 1-7 except 6
+        3 => (int)LanguageID.Spanish, // 1-7 except 6
+        2 => (int)LanguageID.Korean,
+        4 => (int)LanguageID.Korean,
+        5 => (int)LanguageID.Korean,
+        6 => (int)LanguageID.Korean,
+        7 => (int)LanguageID.ChineseT,
+        8 => (int)LanguageID.ChineseT,
+        9 => (int)LanguageID.ChineseT,
         _ => -1,
     };
 
@@ -240,6 +244,7 @@ public static class Legal
             if (iv != pk.GetIV(i))
                 return false;
         }
+
         return true;
     }
 
@@ -249,7 +254,7 @@ public static class Legal
     public static bool GetIsFixedIVSequenceValidSkipRand(in IndividualValueSet IVs, PKM pk, int max = 31)
     {
         // Template IVs not in the [0,max] range are random. Only check for IVs within the "specified" range.
-        if ((uint)IVs.HP  <= max && IVs.HP  != pk.IV_HP ) return false;
+        if ((uint)IVs.HP <= max && IVs.HP != pk.IV_HP) return false;
         if ((uint)IVs.ATK <= max && IVs.ATK != pk.IV_ATK) return false;
         if ((uint)IVs.DEF <= max && IVs.DEF != pk.IV_DEF) return false;
         if ((uint)IVs.SPE <= max && IVs.SPE != pk.IV_SPE) return false;
@@ -263,7 +268,7 @@ public static class Legal
     /// </summary>
     public static bool GetIsFixedIVSequenceValidNoRand(in IndividualValueSet IVs, PKM pk)
     {
-        if (IVs.HP  != pk.IV_HP ) return false;
+        if (IVs.HP != pk.IV_HP) return false;
         if (IVs.ATK != pk.IV_ATK) return false;
         if (IVs.DEF != pk.IV_DEF) return false;
         if (IVs.SPE != pk.IV_SPE) return false;

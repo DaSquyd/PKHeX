@@ -33,7 +33,7 @@ public static class GameUtil
     /// <summary>
     /// Most recent game ID utilized by official games.
     /// </summary>
-    internal const GameVersion HighestGameID = RB - 1;
+    internal const GameVersion HighestGameID = B2;
 
     /// <summary>Determines the Version Grouping of an input Version ID</summary>
     /// <param name="version">Version of which to determine the group</param>

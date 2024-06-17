@@ -5,8 +5,8 @@ namespace PKHeX.Core;
 /// </summary>
 public static class PKX
 {
-    internal static IPersonalTable Personal => PersonalTable.SV;
-    public const EntityContext Context = EntityContext.Gen9;
-    public const GameVersion Version = GameVersion.SL;
-    public const byte Generation = 9;
+    internal static IPersonalTable Personal => PersonalTable.BW;
+    public const EntityContext Context = EntityContext.Gen5;
+    public const GameVersion Version = GameVersion.BW;
+    public const byte Generation = 5;
 }

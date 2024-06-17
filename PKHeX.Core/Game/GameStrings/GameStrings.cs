@@ -194,13 +194,13 @@ public sealed class GameStrings : IBasicStrings
         SanitizeMetLocations();
 
         // De-duplicate the Calyrex ability names
-        abilitylist[(int)Core.Ability.AsOneI] += $" ({specieslist[(int)Core.Species.Glastrier]})";
-        abilitylist[(int)Core.Ability.AsOneG] += $" ({specieslist[(int)Core.Species.Spectrier]})";
+        abilitylist[0] += $" ({specieslist[(int)Core.Species.Glastrier]})";
+        abilitylist[0] += $" ({specieslist[(int)Core.Species.Spectrier]})";
         // De-duplicate the Ogerpon ability names
-        abilitylist[(int)Core.Ability.EmbodyAspect0] += $" ({forms[FormConverter.MaskTeal]})";
-        abilitylist[(int)Core.Ability.EmbodyAspect1] += $" ({forms[FormConverter.MaskHearthflame]})";
-        abilitylist[(int)Core.Ability.EmbodyAspect2] += $" ({forms[FormConverter.MaskWellspring]})";
-        abilitylist[(int)Core.Ability.EmbodyAspect3] += $" ({forms[FormConverter.MaskCornerstone]})";
+        abilitylist[0] += $" ({forms[FormConverter.MaskTeal]})";
+        abilitylist[0] += $" ({forms[FormConverter.MaskHearthflame]})";
+        abilitylist[0] += $" ({forms[FormConverter.MaskWellspring]})";
+        abilitylist[0] += $" ({forms[FormConverter.MaskCornerstone]})";
 
         // Replace the Egg Name with ---; egg name already stored to eggname
         specieslist[0] = EmptyIndex;
@@ -693,7 +693,7 @@ public sealed class GameStrings : IBasicStrings
 
     private string[] GetItemStrings8b()
     {
-        // Item Indexes 
+        // Item Indexes
         var clone = (string[])itemlist.Clone();
         var tm = clone[419][..2];
         for (int i = 420; i <= 427; i++)
