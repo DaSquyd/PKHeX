@@ -48,7 +48,7 @@ public partial class PKMEditor
         else
         {
             var pi = (IPersonalAbility12H)pk5.PersonalInfo;
-            pk5.HiddenAbility = pk5.Ability == pi.AbilityH;
+            pk5.HiddenAbility = pk5.Ability == pi.AbilityH && pi.AbilityH != pi.Ability1;
         }
 
         SavePartyStats(pk5);
