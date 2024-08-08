@@ -93,7 +93,7 @@ public partial class SAV_Inventory : Form
         // Get Columns
         var item = GetItemColumn(ColumnItem = dgv.Columns.Count);
         dgv.Columns.Add(item);
-        dgv.Columns.Add(GetCountColumn(pouch, Main.HaX, ColumnCount = dgv.Columns.Count));
+        dgv.Columns.Add(GetCountColumn(pouch, false, ColumnCount = dgv.Columns.Count));
         if (HasFavorite)
             dgv.Columns.Add(GetCheckColumn(ColumnFavorite = dgv.Columns.Count,"Fav"));
         if (HasNew)
@@ -105,7 +105,7 @@ public partial class SAV_Inventory : Form
             dgv.Columns.Add(GetCountColumn(pouch, true, ColumnFreeSpaceIndex = dgv.Columns.Count, "Free"));
 
         // Populate with rows
-        var itemarr = Main.HaX ? itemlist : GetStringsForPouch(pouch.GetAllItems());
+        var itemarr = GetStringsForPouch(pouch.GetAllItems());
         item.Items.AddRange(itemarr);
 
         var items = pouch.Items;
@@ -154,7 +154,7 @@ public partial class SAV_Inventory : Form
         FlatStyle = FlatStyle.Flat,
     };
 
-    private static DataGridViewTextBoxColumn GetCountColumn(InventoryPouch pouch, bool HaX, int c, string name = "Count")
+    private static DataGridViewTextBoxColumn GetCountColumn(InventoryPouch pouch, bool force, int c, string name = "Count")
     {
         var dgvIndex = new DataGridViewTextBoxColumn
         {
@@ -163,7 +163,7 @@ public partial class SAV_Inventory : Form
             Width = 45,
             DefaultCellStyle = {Alignment = DataGridViewContentAlignment.MiddleCenter},
         };
-        if (!HaX)
+        if (!force)
             dgvIndex.MaxInputLength = (int)(Math.Log10(Math.Max(1, pouch.MaxCount)) + 1);
         return dgvIndex;
     }
@@ -181,10 +181,10 @@ public partial class SAV_Inventory : Form
 
             if (outOfBounds.Length != 0)
                 WinFormsUtil.Error(MsgItemPouchUnknown, $"Item ID(s): {string.Join(", ", outOfBounds.Select(item => item.Index))}");
-            if (!Main.HaX && incorrectPouch.Length != 0)
+            if (incorrectPouch.Length != 0)
                 WinFormsUtil.Alert(string.Format(MsgItemPouchRemoved, pouch.Type), string.Join(", ", incorrectPouch.Select(item => itemlist[item.Index])), MsgItemPouchWarning);
 
-            pouch.Sanitize(itemlist.Length - 1, Main.HaX);
+            pouch.Sanitize(itemlist.Length - 1);
             GetBag(dgv, pouch);
         }
     }
@@ -204,7 +204,7 @@ public partial class SAV_Inventory : Form
         for (int i = 0; i < dgv.Rows.Count; i++)
         {
             var item = pouch.Items[i];
-            if (item.Index != 0 && !valid.Contains((ushort)item.Index) && !Main.HaX)
+            if (item.Index != 0 && !valid.Contains((ushort)item.Index))
                 item = pouch.Items[i] = pouch.GetEmpty();
 
             var cells = dgv.Rows[i].Cells;
@@ -237,7 +237,7 @@ public partial class SAV_Inventory : Form
             bool result = int.TryParse(cells[ColumnCount].Value?.ToString(), out int itemcnt);
             if (!result)
                 continue;
-            if (!pouch.IsValidItemAndCount(SAV, itemindex, HasNew, Main.HaX, ref itemcnt))
+            if (!pouch.IsValidItemAndCount(SAV, itemindex, HasNew, ref itemcnt))
                 continue; // ignore item
 
             // create clean item data when saving
@@ -254,18 +254,18 @@ public partial class SAV_Inventory : Form
             pouch.Items[ctr] = item;
             ctr++;
         }
-        for (int i = ctr; i < pouch.Items.Length; i++)
+        for (var i = ctr; i < pouch.Items.Length; i++)
             pouch.Items[i] = pouch.GetEmpty(); // Empty Slots at the end
     }
 
     private void ChangeViewedPouch(int index)
     {
         var pouch = Pouches[index];
-        NUD_Count.Maximum = GetMax(SAV, pouch, Main.HaX);
+        NUD_Count.Maximum = GetMax(SAV, pouch);
 
-        bool disable = pouch.Type is InventoryType.PCItems or InventoryType.FreeSpace && SAV is not SAV8LA;
+        var disable = pouch.Type is InventoryType.PCItems or InventoryType.FreeSpace && SAV is not SAV8LA;
         NUD_Count.Visible = L_Count.Visible = B_GiveAll.Visible = !disable;
-        if (disable && !Main.HaX)
+        if (disable)
         {
             giveMenu.Items.Remove(giveAll);
             giveMenu.Items.Remove(giveModify);
@@ -278,11 +278,8 @@ public partial class SAV_Inventory : Form
         NUD_Count.Value = Math.Max(1, pouch.MaxCount - 4);
     }
 
-    private static int GetMax(ITrainerInfo sav, InventoryPouch pouch, bool HaX)
+    private static int GetMax(ITrainerInfo sav, InventoryPouch pouch)
     {
-        if (HaX)
-            return pouch.MaxCount;
-
         return sav.Generation switch
         {
             // Cap at absolute maximum

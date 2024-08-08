@@ -82,7 +82,7 @@ public abstract class InventoryPouch
     /// </summary>
     /// <param name="maxItemID">Max item ID that exists in the game</param>
     /// <param name="HaX">Allow maximum-but-illegal quantities.</param>
-    public void Sanitize(int maxItemID, bool HaX = false)
+    public void Sanitize(int maxItemID)
     {
         int ctr = 0;
         var arr = Items;
@@ -93,7 +93,7 @@ public abstract class InventoryPouch
             {
                 if ((uint)item.Index > maxItemID)
                     continue;
-                if (!HaX && !Info.IsLegal(Type, item.Index, item.Count))
+                if (!Info.IsLegal(Type, item.Index, item.Count))
                     continue;
             }
             arr[ctr++] = arr[i]; // absorb down
@@ -254,20 +254,8 @@ public abstract class InventoryPouch
         return -1;
     }
 
-    public bool IsValidItemAndCount(ITrainerInfo sav, int item, bool HasNew, bool HaX, ref int count)
+    public bool IsValidItemAndCount(ITrainerInfo sav, int item, bool HasNew, ref int count)
     {
-        if (HaX && sav.Generation != 7) // Gen7 has true cap at 1023, keep 999 cap.
-        {
-            count = sav.Generation switch
-            {
-                // Cap at absolute maximum
-                <= 2 when count > byte.MaxValue => byte.MaxValue,
-                _ when count > ushort.MaxValue => ushort.MaxValue,
-                _ => count,
-            };
-            return true;
-        }
-
         if (count > MaxCount)
         {
             if (item == 797 && count >= 2) // Edge case when for some reason the item count for Z-Ring was 2 in an unedited save and set 1 after using PKHeX

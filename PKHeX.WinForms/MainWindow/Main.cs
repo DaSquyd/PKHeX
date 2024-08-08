@@ -122,7 +122,7 @@ public partial class Main : Form
         BAKprompt = false;
 
         FormLoadConfig(out BAKprompt, out showChangelog);
-        HaX = true; // Settings.Startup.ForceHaXOnLaunch || GetIsHaX(args);
+        HaX = Settings.Startup.ForceHaXOnLaunch || GetIsHaX(args);
 
         WinFormsUtil.AddSaveFileExtensions(Settings.Backup.OtherSaveFileExtensions);
         SaveFinder.CustomBackupPaths.Clear();
