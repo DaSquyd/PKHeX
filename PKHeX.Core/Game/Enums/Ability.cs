@@ -188,6 +188,8 @@ public enum Ability : ushort
     Aerilate,
     Galvanize,
     GaleWings,
+    ToughClaws,
+    StoneHome,
     RipTide,
     MAX_COUNT,
 }

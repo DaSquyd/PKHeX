@@ -111,27 +111,27 @@ Dawn Stone
 Oval Stone
 Odd Keystone
 Griseous Orb
-Tea
-???
-Autograph
+Weakness Policy
+Assault Vest
+Pixie Plate
 Douse Drive
 Shock Drive
 Burn Drive
 Chill Drive
-???
-Pokémon Box Link
-Medicine Pocket
-TM Case
-Candy Jar
-Power-Up Pocket
-Clothing Trunk
-Catching Pocket
-Battle Pocket
-???
-???
-???
-???
-???
+Snowball
+Safety Goggles
+Roseli Berry
+Kee Berry
+Maranga Berry
+Fairy Gem
+Bottle Cap
+Gold Bottle Cap
+Rusty Bottle Cap
+Adrenaline Orb
+Ice Stone
+Terrain Extender
+Protective Pads
+Electric Seed
 Sweet Heart
 Adamant Orb
 Lustrous Orb
@@ -424,8 +424,8 @@ HM03
 HM04
 HM05
 HM06
-???
-???
+Psychic Seed
+Misty Seed
 Explorer Kit
 Loot Sack
 Rule Book
@@ -466,23 +466,23 @@ Secret Medicine
 Vs. Recorder
 Gracidea
 Secret Key
-Apricorn Box
-Unown Report
-Berry Pots
+Grassy Seed
+Throat Spray
+Eject Pack
 Dowsing Machine
-Blue Card
-Slowpoke Tail
+Heavy-Duty Boots
+Blunder Policy
 Clear Bell
-Card Key
-Basement Key
-Squirt Bottle
-Red Scale
-Lost Item
-Pass
-Machine Part
+Room Service
+Utility Umbrella
+Lonely Mint
+Adamant Mint
+Naughty Mint
+Brave Mint
+Bold Mint
 Silver Feather
 Rainbow Feather
-Mystery Egg
+Impish Mint
 Red Apricorn
 Blue Apricorn
 Yellow Apricorn
@@ -499,31 +499,31 @@ Friend Ball
 Moon Ball
 Sport Ball
 Park Ball
-Photo Album
-GB Sounds
+Lax Mint
+Relaxed Mint
 Tidal Bell
 Rage Candy Bar
-Data Card 01
-Data Card 02
-Data Card 03
-Data Card 04
-Data Card 05
-Data Card 06
-Data Card 07
-Data Card 08
-Data Card 09
-Data Card 10
-Data Card 11
-Data Card 12
-Data Card 13
-Data Card 14
-Data Card 15
-Data Card 16
-Data Card 17
-Data Card 18
-Data Card 19
-Data Card 20
-Data Card 21
+Modest Mint
+Mild Mint
+Rash Mint
+Quiet Mint
+Calm Mint
+Gentle Mint
+Careful Mint
+Sassy Mint
+Timid Mint
+Hasty Mint
+Jolly Mint
+Naive Mint
+Serious Mint
+Blank Plate
+Legend Plate
+Ability Shield
+Clear Amulet
+Mirror Herb
+Punching Glove
+Covert Cloak
+Loaded Dice
 Data Card 22
 Data Card 23
 Data Card 24

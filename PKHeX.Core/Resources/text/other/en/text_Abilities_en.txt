@@ -181,4 +181,6 @@ Pixilate
 Aerilate
 Galvanize
 Gale Wings
+Tough Claws
+Stone Home
 Rip Tide
